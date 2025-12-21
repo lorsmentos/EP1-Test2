@@ -60,6 +60,22 @@ int posFill =0;
         }
     }
 }
+/*
+String extractString(char[] sequence, int start, int end, char omit) liefert einen String bestehend aus den Zeichen
+in sequence zwischen den Indizes start (inklusive) und end (exklusive) zurück, wobei alle Vorkommen des Zeichens omit ausgelassen werden.
+Diese Methode muss rekursiv implementiert werden.
+Es dürfen keine Methoden der Klasse String verwendet werden, Operatoren sind aber erlaubt!
+ */
+String extractString(char[] sequence, int start, int end, char omit){
+    if (start==end ) {
+        return "";
+    }
+    if (sequence[start]==omit){
+        return extractString(sequence, start + 1, end, omit);
+    }
+    return sequence[start]+extractString(sequence, start + 1, end, omit);
+
+}
 
 void main() {
     int[][] test1 = {{1, 2, 0, -1, -2, 3}, {-1, 2, 3}, {0, 0}, {}, {4, 5, -1}};
@@ -70,5 +86,13 @@ void main() {
    // System.out.println(Arrays.deepToString(generate(test3)));
     fill(test3,test2[0],test2[1]);
     System.out.println(Arrays.deepToString(test3));
+    String result =extractString(age1, 0, age1.length, '-');
+    System.out.println(result);
+    result = extractString(age1, 1, 7, 'u');
+    System.out.println(result);
+    result = extractString(age2, 0, 5, 'a');
+    System.out.println(result);
+    result = extractString(age2, 5, age2.length, 'n');
+    System.out.println(result);
 }
 
