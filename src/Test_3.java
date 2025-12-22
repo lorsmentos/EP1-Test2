@@ -54,9 +54,9 @@ String insertMiddle(String input, String seps) {
 
 
 void main() {
-    String input = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    String input = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
     System.out.println(input.length());
-    String seps = "-------";
+    String seps = "123";
     int[] pattern = {0, 1};
     int[][] data0 = {{3, 0}, {0, 1}, {2, 2}};
     int[][] data1 = {{0, 1, 0, 0, 1, 0}, {}, {2, 2, 2, 2, 0, 1}};
