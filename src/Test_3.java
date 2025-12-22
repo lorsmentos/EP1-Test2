@@ -18,31 +18,59 @@ void findMatches(int[][] data, int[] pattern, int[] target) {
         int count = 0;
         for (int j = 0; j < data[i].length; j++) {
             if (j + 1 < data[i].length) {
-                if (data[i][j]==pattern[0] && data[i][j + 1] == pattern[1]) {
+                if (data[i][j] == pattern[0] && data[i][j + 1] == pattern[1]) {
                     count++;
                 }
             }
             target[i] = count;
         }
     }
-    for(int k=0;k<target.length;k++){
-        System.out.print(target[k]+" ");
+    for (int k = 0; k < target.length; k++) {
+        System.out.print(target[k] + " ");
     }
 
 }
 
+String insertMiddle(String input, String seps) {
+    // If there is no separator to insert, STOP recursion
+    if (seps.isEmpty() || input.length() <= 1) {
+        return input;
+    }
+
+    int mid = input.length() / 2;
+
+    String left = input.substring(0, mid);
+    String right = input.substring(mid);
+
+    char sep = seps.charAt(0);
+
+    // Recurse ONLY while separators exist
+    return insertMiddle(left, seps.substring(1))
+            + sep
+            + insertMiddle(right, seps.substring(1));
+}
+
+
+
+
 void main() {
-    int []pattern={0,1};
+    String input = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA";
+    System.out.println(input.length());
+    String seps = "-------";
+    int[] pattern = {0, 1};
     int[][] data0 = {{3, 0}, {0, 1}, {2, 2}};
     int[][] data1 = {{0, 1, 0, 0, 1, 0}, {}, {2, 2, 2, 2, 0, 1}};
-    int[][] data5 = {{0, 1, 1, 1, 0, 0}, {0,1}, {2, 2, 0, 1, 0, 1}};
+    int[][] data5 = {{0, 1, 1, 1, 0, 0}, {0, 1}, {2, 2, 0, 1, 0, 1}};
     int[][] data3 = {{3, 1}, {2, 1}, {2, 0}};
     int[] target1 = {0, 0, 0};
     int[] target2 = {9, 9, 9, 9};
     System.out.println(Arrays.deepToString(labelPath(4, data0)));
     System.out.println(Arrays.deepToString(labelPath(5, data3)));
-    findMatches(data1,pattern,target1);
+    findMatches(data1, pattern, target1);
     System.out.println();
-    findMatches(data5,pattern,target1);
+    findMatches(data5, pattern, target1);
+    System.out.println();
+    System.out.println(insertMiddle(input, seps));
+
 
 }
